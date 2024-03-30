@@ -1,4 +1,4 @@
-module github.com/reiver/gp-iopsep
+module github.com/reiver/go-iopsep
 
 go 1.22.0
 
