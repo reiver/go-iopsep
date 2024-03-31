@@ -158,7 +158,7 @@ func TestPipeWrite(t *testing.T) {
 		returnerror := func(err error) {
 			t.Errorf("For test #%d, did not expect a 'return error' but actually got one." , testNumber)
 			t.Logf("ERROR: (%T) %s", err, err)
-			t.Logf("DATA: %q", test.Data)
+			t.Logf("DATA:   %q", test.Data)
 			t.Logf("BUFFER: %q", buffer.String())
 		}
 
@@ -169,7 +169,7 @@ func TestPipeWrite(t *testing.T) {
 		{
 			if !eof {
 				t.Errorf("For test #%d, expected 'eof' but did not actually get one." , testNumber)
-				t.Logf("DATA: %q", test.Data)
+				t.Logf("DATA:   %q", test.Data)
 				t.Logf("BUFFER: %q", buffer.String())
 			}
 		}
