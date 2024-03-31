@@ -44,10 +44,14 @@ func (receiver *internalParagraphReadCloser) Close() error {
 		return errNilReceiver
 	}
 
+	var pipewritererror error
 	{
 		var pipewriter *io.PipeWriter = receiver.pipewriter
 		if nil != pipewriter {
-			
+			err := pipewriter.Close()
+			if nil != err {
+				pipewritererror = err
+			}
 		}
 	}
 
@@ -59,6 +63,10 @@ func (receiver *internalParagraphReadCloser) Close() error {
 				return err
 			}
 		}
+	}
+
+	if nil != pipewritererror {
+		return pipewritererror
 	}
 
 	return nil
