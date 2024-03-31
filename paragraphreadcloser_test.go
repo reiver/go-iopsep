@@ -1,0 +1,111 @@
+package iopsep_test
+
+import (
+	"testing"
+
+	"io"
+	"reflect"
+	"strings"
+
+	"github.com/reiver/go-iopsep"
+)
+
+func TestNewParagraphReadCloser(t *testing.T) {
+
+	tests := []struct{
+		Data string
+		Expected []string
+	}{
+		{
+			Data: "",
+			Expected: []string(nil),
+		},
+
+
+
+		{
+			Data:
+				"apple banana cherry",
+			Expected: []string{
+				"apple banana cherry",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\n",
+			Expected: []string{
+				"apple banana cherry"+"\n",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\n\n",
+			Expected: []string{
+				"apple banana cherry"+"\n\n",
+			},
+		},
+
+
+
+		{
+			Data:
+				"apple banana cherry"+"\n\n"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\n\n",
+				"once twice thrice fource",
+			},
+		},
+	}
+
+	for testNumber, test := range tests {
+
+		var actual []string
+
+		var reader io.Reader = strings.NewReader(test.Data)
+
+		for {
+			var actualBytes []byte
+
+			func(){
+				var readcloser io.ReadCloser = iopsep.NewParagraphReadCloser(reader)
+				defer func() {
+					err := readcloser.Close()
+					if nil != err {
+						t.Errorf("For test #%d, did not expected an error when 'closing' but actually got one.", testNumber)
+						t.Logf("ERROR: (%T) %s", err, err)
+						t.Logf("DATA: %q", test.Data)
+					}
+				}()
+
+				var err error
+
+				actualBytes, err = io.ReadAll(readcloser)
+				if nil != err {
+					t.Errorf("For test #%d, did not expected an error when 'reading-all' but actually got one.", testNumber)
+					t.Logf("ERROR: (%T) %s", err, err)
+					t.Logf("DATA: %q", test.Data)
+					return
+				}
+			}()
+
+			if len(actualBytes) <= 0 {
+				break
+			}
+
+			actual = append(actual, string(actualBytes))
+		}
+
+		{
+			expected := test.Expected
+
+			if !reflect.DeepEqual(expected, actual) {
+				t.Errorf("For test #%d, the actual result is not what was expected.", testNumber)
+				t.Logf("EXPECTED: %#v", expected)
+				t.Logf("ACTUAL:   %#v", actual)
+				t.Logf("DATA: %q", test.Data)
+				continue
+			}
+		}
+	}
+}
