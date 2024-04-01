@@ -56,6 +56,117 @@ func TestNewParagraphReadCloser(t *testing.T) {
 				"once twice thrice fource",
 			},
 		},
+
+
+
+		{
+			Data:
+				"apple banana cherry"+"\r\r"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\r\r",
+				"once twice thrice fource",
+			},
+		},
+
+
+
+		{
+			Data:
+				"apple banana cherry"+"\n\r\n\r"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\n\r\n\r",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\r\n\r\n"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\r\n\r\n",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\n\r\r\n"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\n\r\r\n",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\r\n\n\r"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\r\n\n\r",
+				"once twice thrice fource",
+			},
+		},
+
+
+
+		{
+			Data:
+				"apple banana cherry"+"\u0085\u0085"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\u0085\u0085",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\u0085\n\r"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\u0085\n\r",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\u0085\r\n"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\u0085\r\n",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\n\r\u0085"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\n\r\u0085",
+				"once twice thrice fource",
+			},
+		},
+		{
+			Data:
+				"apple banana cherry"+"\r\n\u0085"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\r\n\u0085",
+				"once twice thrice fource",
+			},
+		},
+
+
+
+		{
+			Data:
+				"apple banana cherry"+"\u2029"+
+				"once twice thrice fource",
+			Expected: []string{
+				"apple banana cherry"+"\u2029",
+				"once twice thrice fource",
+			},
+		},
 	}
 
 	for testNumber, test := range tests {
