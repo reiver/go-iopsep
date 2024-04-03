@@ -5,15 +5,15 @@ import (
 )
 
 const (
-	errNilPipeReader = erorr.Error("iop: nil pipe-reader")
-	errNilPipeWriter = erorr.Error("iop: nil pipe-writer")
-	errNilReader     = erorr.Error("iop: nil reader")
-	errNilReceiver   = erorr.Error("iop: nil receiver")
-	errNilWriter     = erorr.Error("iop: nil writer")
+	errNilPipeReader = erorr.Error("iopsep: nil pipe-reader")
+	errNilPipeWriter = erorr.Error("iopsep: nil pipe-writer")
+	errNilReader     = erorr.Error("iopsep: nil reader")
+	errNilReceiver   = erorr.Error("iopsep: nil receiver")
+	errNilWriter     = erorr.Error("iopsep: nil writer")
 )
 
 const (
-	errNilReturnEOFFunction   = erorr.Error("iop: nil return-eof function")
-	errNilReturnErrorFunction = erorr.Error("iop: nil return-error function")
-	errNilWriteRuneFunction   = erorr.Error("iop: nil write-rune function")
+	errNilReturnEOFFunction   = erorr.Error("iopsep: nil return-eof function")
+	errNilReturnErrorFunction = erorr.Error("iopsep: nil return-error function")
+	errNilWriteRuneFunction   = erorr.Error("iopsep: nil write-rune function")
 )
