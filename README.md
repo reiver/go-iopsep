@@ -10,9 +10,9 @@ A paragraph is terminated by one of these:
 * `"\n\r\u0085"`
 * `"\r\n\r\n"`
 * `"\r\n\u0085"`
-* `\u0085\u0085`
-* `\u0085\n\r`
-* `\u0085\r\n`
+* `"\u0085\u0085"`
+* `"\u0085\n\r"`
+* `"\u0085\r\n"`
 * `"\u2029"`
 * `io.EOF`
 
