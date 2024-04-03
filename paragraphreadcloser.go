@@ -259,5 +259,4 @@ func pipewrite(writerune func(rune)bool, returneof func(), returnerror func(erro
 			return
 		}
 	}
-
 }
