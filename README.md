@@ -30,6 +30,10 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 var readcloser io.ReadCloser = iopsep.NewParagraphReadCloser(reader)
 ```
 
+## Name
+
+The **“psep”** (in the package name) is short for “**p**aragraph **sep**arator”.
+
 ## Import
 
 To import package **iopsep** use `import` code like the follownig:
